@@ -1,0 +1,21 @@
+{
+  "name": "CaerusAssessments",
+  "version": "1.0.0",
+  "description": "Caerus Assessments",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "moment": "^2.22.1",
+    "truffle-hdwallet-provider": "0.0.3",
+    "zeppelin-solidity": "git+https://git@github.com/OpenZeppelin/zeppelin-solidity.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
