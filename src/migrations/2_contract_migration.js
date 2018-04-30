@@ -19,7 +19,7 @@ module.exports = function(deployer, network, accounts) {
         
 
 
-
+        storage.setBool(keccak256("contract.storage.initialised"), true);
       }) 
 
     });
