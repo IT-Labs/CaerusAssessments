@@ -1,7 +1,7 @@
 pragma solidity ^0.4.19;
 
 
-contract CaeruStorageInterface {
+contract CaerusStorageInterface {
     
     function setAddress(bytes32 _key, address _value) external onlyAllowed;
 

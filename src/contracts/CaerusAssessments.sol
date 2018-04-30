@@ -1,15 +1,15 @@
 pragma solidity ^0.4.19;
 
 
-import "./Interfaces/CaeruStorageInterface.sol";
+import "./Interfaces/CaerusStorageInterface.sol";
 
 
 contract CaerusAssessments {
 
-    CaeruStorageInterface private caerusStorage = CaeruStorageInterface(0);
+    CaerusStorageInterface private caerusStorage = CaerusStorageInterface(0);
 
     constructor(address _caerusStorage) public {
-        caerusStorage = CaeruStorageInterface(_caerusStorage);
+        caerusStorage = CaerusStorageInterface(_caerusStorage);
     }
 
 }

@@ -1,11 +1,11 @@
 pragma solidity ^0.4.19;
 
 
-import "./Interfaces/CaeruStorageInterface.sol";
+import "./Interfaces/CaerusStorageInterface.sol";
 
 
 /// @title The primary persistent storage for Caerus Assessments
-contract CaerusStorage is CaeruStorageInterface {
+contract CaerusStorage is CaerusStorageInterface {
 
     mapping(bytes32 => address)    private addressStorage;
     mapping(bytes32 => int256)     private intStorage;
