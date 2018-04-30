@@ -39,3 +39,5 @@ src/node_modules/zeppelin-solidity/contracts/math/*
 src/node_modules/zeppelin-solidity/contracts/lifecycle/*
 !src/node_modules/zeppelin-solidity/contracts/lifecycle/Pausable.sol
 
+
+src/Contracts/build/

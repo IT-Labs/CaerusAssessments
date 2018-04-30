@@ -5,7 +5,7 @@ import "./Interfaces/CaeruStorageInterface.sol";
 
 
 /// @title The primary persistent storage for Caerus Assessments
-contract CaeruStorage is CaeruStorageInterface {
+contract CaerusStorage is CaeruStorageInterface {
 
     mapping(bytes32 => address)    private addressStorage;
     mapping(bytes32 => int256)     private intStorage;
