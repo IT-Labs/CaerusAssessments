@@ -103,7 +103,7 @@ contract CaeruStorage is CaeruStorageInterface {
     }
 
      /// @dev constructor
-    function constuctor() public {
+    constructor() public {
         // Set the main owner upon deployment
         boolStorage[keccak256("contract.owner", msg.sender)] = true;
     }
