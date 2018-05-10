@@ -1,26 +1,20 @@
 pragma solidity ^0.4.19;
 
 
-import "./Interfaces/CaerusStorageInterface.sol";
+import "./CaerusBase.sol";
 
 
-contract CaerusAssessments {
+contract CaerusAssessments is CaerusBase {
 
-    CaerusStorageInterface private caerusStorage = CaerusStorageInterface(0);
-
-
-
-    function storeAssessment(string _userId, string _assessment) external returns (bool) {
-        caerusStorage.setString(keccak256("assessment.", _userId), _assessment);
+    function storeAssessment(string _userId, string _assessmentId, string _result) external onlyAllowedUsers returns (bool) {
+        caerusStorage.setString(keccak256("assessment.", _userId, _assessmentId), _result);
         return true;
     }
 
-    function getAssessment(string _userId) external returns (string) {  
-        return caerusStorage.getString(keccak256("assessment.", _userId));
+    function getAssessment(string _userId, string _assessmentId) external view returns (string) {  
+        return caerusStorage.getString(keccak256("assessment.", _userId, _assessmentId));
     }
 
-    constructor(address _caerusStorage) public {
-        caerusStorage = CaerusStorageInterface(_caerusStorage);
+    constructor(address _caerusStorage) public CaerusBase(_caerusStorage) {
     }
-
 }
