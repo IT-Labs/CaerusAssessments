@@ -10,7 +10,7 @@
     "async": "^2.6.0",
     "moment": "^2.22.1",
     "openzeppelin-solidity": "git+https://git@github.com/OpenZeppelin/zeppelin-solidity.git",
-    "truffle-hdwallet-provider": "0.0.3",
+    "truffle-hdwallet-provider": "0.0.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
