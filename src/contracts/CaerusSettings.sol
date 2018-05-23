@@ -6,8 +6,6 @@ import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Destructible.s
 
 contract CaerusSettings is CaerusBase {
 
-    CaerusStorageInterface internal caerusStorage = CaerusStorageInterface(0);
-
     function allowUser(address _address) public onlyOwner {
         caerusStorage.setAddress(keccak256(USER_ADDRESS, _address), _address);
     }
@@ -29,8 +27,7 @@ contract CaerusSettings is CaerusBase {
         caerusStorage.setUint(keccak256(RATE_JOB_SEEKER), _rate);
     }
 
-    constructor(address _caerusStorage) public {
-        caerusStorage = CaerusStorageInterface(_caerusStorage);
+    constructor(address _caerusStorage) public CaerusBase(_caerusStorage) {
     }
 
 }

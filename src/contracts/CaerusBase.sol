@@ -13,6 +13,7 @@ contract CaerusBase is Destructible {
     string constant internal RATE_RECRUTER = "rate.recruter";
     string constant internal RATE_JOB_SEEKER = "rate.jobseeker";
     string constant internal TOKEN_OWNER = "token.owner";
+    string constant internal CAERUS_TOKEN = "caerus.token";
 
     modifier onlyAllowedUsers() {
         // Make sure the access is permitted to only contracts in our Dapp
@@ -21,7 +22,7 @@ contract CaerusBase is Destructible {
     }
 
     function getTokenAddress() public view returns (address) {
-        return caerusStorage.getAddress(keccak256(CONTRACT_ADDRESS, "caerus.token"));
+        return caerusStorage.getAddress(keccak256(CONTRACT_ADDRESS, CAERUS_TOKEN));
     }
 
     constructor(address _caerusStorage) public {

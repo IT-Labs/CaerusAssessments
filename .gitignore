@@ -1,6 +1,7 @@
 bin/
 /.vscode
 
+ozcontracts
 src/package-lock\.json
 
 src/build
