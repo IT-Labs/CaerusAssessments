@@ -12,13 +12,7 @@ module.exports = function(deployer, network, accounts) {
   //How many tokens should be received per wei sent in
   //The math works out to be the same as the previous rate with the new 18 decimal place functionality written into the contract
   const initialRate = 416;
-  const setAddress = (caerusStorage, contractName, contractAddress) => {
-    console.log(` ${contractName} address: ${contractAddress}`);
-    storage.setBool(web3.sha3("contract.address", contractAddress), true);
-    console.log(` ${contractName} sha3: ${web3.sha3("contract.address", contractAddress)}`);
-    storage.setAddress(web3.sha3("contract.address", contractAddress), contractAddress);
-    storage.setAddress(web3.sha3("contract.address", contractName), contractAddress);
-  };
+
 
   // deployer.deploy(CaerusToken, multisigAddress, initialRate).then(() => {
   //   return CaerusToken.deployed().then(t => {
@@ -29,34 +23,31 @@ module.exports = function(deployer, network, accounts) {
           .then(s => {
             storage = s;
             console.log("Storage address:", storage.address);
+            return deployer.deploy(CaerusSettings, storage.address);
+          })
+          .then(() => {
+            return CaerusSettings.deployed().then(q => {
+              settings = q;              
+              settings.setContractAddress("caerus.settings", settings.address);
+              settings.setTokenAddress(tokenAddress);
+              settings.setTokenOwner(ownerAddress);
+              settings.setRecruterMonthlyRate(3e18);
+              settings.setJobSeekerMonthlyRate(1e18);
 
-            setAddress(storage, "caerus.token", tokenAddress);
-            storage.setAddress(web3.sha3(TOKEN_OWNER), ownerAddress);
-
-            return deployer.deploy(CaerusMembership, storage.address);
+              return deployer.deploy(CaerusMembership, storage.address);
+            });
           })
           .then(() => {
             return CaerusMembership.deployed().then(m => {
               membership = m;
-              setAddress(storage, "caerus.membership", membership.address);
-              return deployer.deploy(CaerusSettings, storage.address);
-            });
-          })
-          .then(() => {
-            return CaerusSettings.deployed().then(q => {
-              settings = q;
-              setAddress(storage, "caerus.settings", settings.address);
-
-              settings.setRecruterMonthlyRate(3e18);
-              settings.setJobSeekerMonthlyRate(1e18);
-
+              settings.setContractAddress("caerus.membership", membership.address);
               return deployer.deploy(CaerusAssessments, storage.address);
             });
-          })
+          })          
           .then(() => {
             return CaerusAssessments.deployed().then(a => {
               assessments = a;
-              setAddress(storage, "caerus.assessments", assessments.address);
+              settings.setContractAddress("caerus.assessments", assessments.address);
               //storage.setBool(web3.sha3("contract.storage.initialised"), true);
             });
           });

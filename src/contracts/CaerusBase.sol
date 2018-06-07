@@ -1,13 +1,13 @@
 pragma solidity ^0.4.19;
 
 
-import "./Interfaces/CaerusStorageInterface.sol";
+import "./CaerusStorage.sol";
 import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Destructible.sol";
 
 
 contract CaerusBase is Destructible {
 
-    CaerusStorageInterface internal caerusStorage = CaerusStorageInterface(0);
+    CaerusStorage internal caerusStorage;
     string constant internal USER_ADDRESS = "user.address";
     string constant internal CONTRACT_ADDRESS = "contract.address";
     string constant internal RATE_RECRUTER = "rate.recruter";
@@ -26,7 +26,7 @@ contract CaerusBase is Destructible {
     }
 
     constructor(address _caerusStorage) public {
-        caerusStorage = CaerusStorageInterface(_caerusStorage);
+        caerusStorage = CaerusStorage(_caerusStorage);
     }
 
 }

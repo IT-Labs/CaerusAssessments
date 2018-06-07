@@ -1,6 +1,7 @@
 const CaerusStorage = artifacts.require('CaerusStorage');
+const CaerusMembership = artifacts.require('CaerusMembership');
 
-contract('CaerusStorage', accounts => {
+contract('CaerusMembership', accounts => {
   let storage;
   const owner = accounts[0];
   const buyer = accounts[1];
