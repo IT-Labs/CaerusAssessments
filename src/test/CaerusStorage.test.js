@@ -35,18 +35,6 @@ contract('CaerusMembership', accounts => {
     assert.equal("0x0000000000000000000000000000000000000000", ownerAddress);
   });
 
-  //Negative scenario Address
-  it('negative scenario address', async function () {
-    storage.setInt(web3.sha3("token.owner"), -3)//"0x9eaf47e9203674e5dd0c7d90178b83f0d18410b5") // gresna, poslednata trebit da e 0 a ne 5
-            .then(function (x) { 
-              console.log("then sum");
-            })
-            .catch(function (error) { 
-              console.log(error.message);
-              console.log("error sum");
-            });
-  });
-
   // Set, Get and Delete uint
   //Basic
   it('can store uint', async function () {
