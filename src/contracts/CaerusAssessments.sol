@@ -15,7 +15,7 @@ contract CaerusAssessments is CaerusBase {
         return true;
     }
 
-    function getAssessment(string _userId, string _assessmentId) external view returns (uint256) {  
+    function getAssessment(string _assessmentId) external view returns (uint256) {  
         return caerusStorage.getUint(keccak256( _assessmentId));
     }
 
