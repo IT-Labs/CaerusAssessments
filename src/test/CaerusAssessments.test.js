@@ -43,5 +43,35 @@ contract('CaerusAssessments', accounts => {
     assert.equal(123456789, result);
   });
 
+  it('not equal assessment', async function () {
+    await assessments.setAssessment("a",123456789, {
+      from: owner
+    });
+    var result = await assessments.getAssessment("a", {
+      from: owner
+    });
+    console.log(result);
+    assert.notEqual(987654321, result);
+  });
 
+  it('negative number', async function () {
+    await assessments.setAssessment("a", -123456789, {
+      from: owner
+    });
+    var result = await assessments.getAssessment("a", {
+      from: owner
+    });
+    assert.notEqual(-123456789, result);
+  });
+
+  it('wrong letter', async function () {
+    await assessments.setAssessment("a",123456789, {
+      from: owner
+    });
+    var result = await assessments.getAssessment("b", {
+      from: owner
+    });
+    console.log(result);
+    assert.notEqual(123456789, result);
+  });
 });
