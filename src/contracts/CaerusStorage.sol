@@ -1,7 +1,9 @@
 pragma solidity ^0.4.19;
 
-
-/// @title The primary persistent storage for Caerus Assessments
+/**
+ * @title Caerus Settings.
+ * @dev The primary persistent storage for Caerus Assessments. 
+ */
 contract CaerusStorage {
     string constant internal CONTRACT_ADDRESS = "contract.address";
 
@@ -12,103 +14,161 @@ contract CaerusStorage {
     mapping(bytes32 => bytes)      private bytesStorage;
     mapping(bytes32 => bool)       private boolStorage;
 
-    /// @param _key The key for the record
+    /**
+    * @dev Sets an value for a particular key.
+    * @param _key key portion of the stored item.
+    * @param _value value portion of the stored item.
+    */
     function setAddress(bytes32 _key, address _value) external onlyAllowed {
         addressStorage[_key] = _value;
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Sets an value for a particular key.
+    * @param _key key portion of the stored item.
+    * @param _value value portion of the stored item.
+    */
     function setUint(bytes32 _key, uint _value) external onlyAllowed {
         uIntStorage[_key] = _value;
     }
     
-    /// @param _key The key for the record
+    /**
+    * @dev Sets an value for a particular key.
+    * @param _key key portion of the stored item.
+    * @param _value value portion of the stored item.
+    */
     function setInt(bytes32 _key, int _value) external onlyAllowed {
         intStorage[_key] = _value;
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Sets an value for a particular key.
+    * @param _key key portion of the stored item.
+    * @param _value value portion of the stored item.
+    */
     function setString(bytes32 _key, string _value) external onlyAllowed {
         stringStorage[_key] = _value;
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Sets an value for a particular key.
+    * @param _key key portion of the stored item.
+    * @param _value value portion of the stored item.
+    */
     function setBytes(bytes32 _key, bytes _value) external onlyAllowed {
         bytesStorage[_key] = _value;
     }
     
-    /// @param _key The key for the record
+    /**
+    * @dev Sets an value for a particular key.
+    * @param _key key portion of the stored item.
+    * @param _value value portion of the stored item.
+    */
     function setBool(bytes32 _key, bool _value) external onlyAllowed {
         boolStorage[_key] = _value;
     }
     
-    /// @param _key The key for the record
+    /**
+    * @dev Deletes an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function deleteAddress(bytes32 _key) external onlyAllowed {
         delete addressStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Deletes an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function deleteUint(bytes32 _key) external onlyAllowed {
         delete uIntStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Deletes an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function deleteString(bytes32 _key) external onlyAllowed {
         delete stringStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Deletes an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function deleteBytes(bytes32 _key) external onlyAllowed {
         delete bytesStorage[_key];
     }
     
-    /// @param _key The key for the record
+    /**
+    * @dev Deletes an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function deleteBool(bytes32 _key) external onlyAllowed {
         delete boolStorage[_key];
     }
     
-    /// @param _key The key for the record
+    /**
+    * @dev Deletes an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function deleteInt(bytes32 _key) external onlyAllowed {
         delete intStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Gets an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function getAddress(bytes32 _key) external view returns (address) {
         return addressStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Gets an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function getUint(bytes32 _key) external view returns (uint) {
         return uIntStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Gets an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function getString(bytes32 _key) external view returns (string) {
         return stringStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Gets an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function getBytes(bytes32 _key) external view returns (bytes) {
         return bytesStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Gets an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function getBool(bytes32 _key) external view returns (bool) {
         return boolStorage[_key];
     }
 
-    /// @param _key The key for the record
+    /**
+    * @dev Gets an value for a particular key.
+    * @param _key key portion of the stored item.
+    */
     function getInt(bytes32 _key) external view returns (int) {
         return intStorage[_key];
     }
 
-     /// @dev constructor
     constructor() public {
         // Set the main owner upon deployment
         boolStorage[keccak256("contract.owner", msg.sender)] = true;
     }
 
-    /// @dev Only allow access from the latest version of a contract in the Caerus Assessments network after deployment
     modifier onlyAllowed() {
         // The owner and other contracts are only allowed to set the storage upon deployment to register the initial 
         // contracts/settings,  afterwards their direct access is disabled

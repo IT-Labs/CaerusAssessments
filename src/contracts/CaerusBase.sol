@@ -4,7 +4,10 @@ pragma solidity ^0.4.19;
 import "./CaerusStorage.sol";
 import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Destructible.sol";
 
-
+/**
+ * @title Caerus Base.
+ * @dev Implementation of the Caerus Base contract that hold constants and modifiers that are used by other contracts.
+ */
 contract CaerusBase is Destructible {
 
     CaerusStorage internal caerusStorage;
