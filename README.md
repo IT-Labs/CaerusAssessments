@@ -8,7 +8,7 @@
 
 ## Reviewers and audits
 
-Code for the Caerus token and the sale has been reviewed by:
+Code for the Caerus Assessment has been reviewed by:
 TBD
 
 A bug bounty for the Caerus Assessment will started on [pending date]. [More details](https://www.caerusconnections.io/).
