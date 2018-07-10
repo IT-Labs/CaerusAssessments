@@ -18,12 +18,20 @@ contract CaerusBase is Destructible {
 
     modifier onlyAllowedUsers() {
         // Make sure the access is permitted to only contracts in our Dapp
-        require(caerusStorage.getAddress(keccak256(USER_ADDRESS, msg.sender)) != 0x0);
+        require(caerusStorage.getAddress(getHashAddress(USER_ADDRESS, msg.sender)) != 0x0);
         _;
     }
 
     function getTokenAddress() internal view returns (address) {
-        return caerusStorage.getAddress(keccak256(CONTRACT_ADDRESS, CAERUS_TOKEN));
+        return caerusStorage.getAddress(getHashString(CONTRACT_ADDRESS, CAERUS_TOKEN));
+    }
+
+    function getHashString(string item, string itemString) pure internal returns (bytes32) {
+        return keccak256(abi.encodePacked(item, itemString));
+    }
+
+    function getHashAddress(string item, address itemAddress) pure internal returns (bytes32) {
+        return keccak256(abi.encodePacked(item, itemAddress));
     }
 
     constructor(address _caerusStorage) public {

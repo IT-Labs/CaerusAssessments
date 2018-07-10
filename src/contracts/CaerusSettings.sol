@@ -2,7 +2,6 @@ pragma solidity ^0.4.19;
 
 
 import "./CaerusBase.sol";
-import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Destructible.sol";
 
 /**
  * @title Caerus Settings.
@@ -26,7 +25,7 @@ contract CaerusSettings is CaerusBase {
     * @param _address user address.
     */
     function allowUser(address _address) public onlyOwner {
-        caerusStorage.setAddress(keccak256(USER_ADDRESS, _address), _address);
+        caerusStorage.setAddress(getHashAddress(USER_ADDRESS, _address), _address);
         emit UserAllowedEvent(_address, true);
     }
 
@@ -35,7 +34,7 @@ contract CaerusSettings is CaerusBase {
     * @param _address user address.
     */
     function disallowUser(address _address) public onlyOwner {
-        caerusStorage.deleteAddress(keccak256(USER_ADDRESS, _address));
+        caerusStorage.deleteAddress(getHashAddress(USER_ADDRESS, _address));
         emit UserAllowedEvent(_address, false);
     }
 
@@ -45,9 +44,9 @@ contract CaerusSettings is CaerusBase {
     * @param _address Contract address.
     */
     function setContractAddress(string _contract, address _address) public onlyOwner {
-        caerusStorage.setBool(keccak256(CONTRACT_ADDRESS, _address), true);
-        caerusStorage.setAddress(keccak256(CONTRACT_ADDRESS, _contract), _address);
-        caerusStorage.setAddress(keccak256(CONTRACT_ADDRESS, _address), _address);
+        caerusStorage.setBool(getHashAddress(CONTRACT_ADDRESS, _address), true);
+        caerusStorage.setAddress(getHashString(CONTRACT_ADDRESS, _contract), _address);
+        caerusStorage.setAddress(getHashAddress(CONTRACT_ADDRESS, _address), _address);
         emit ContractAddressChangedEvent(_address, _contract);
     }
 
@@ -57,7 +56,7 @@ contract CaerusSettings is CaerusBase {
     * @param _tokenOwner CaerusToken owner address.
     */
     function setToken(address _tokenAddress, address _tokenOwner) public onlyOwner {
-         caerusStorage.setAddress(keccak256(CONTRACT_ADDRESS, CAERUS_TOKEN), _tokenAddress);
+         caerusStorage.setAddress(getHashString(CONTRACT_ADDRESS, CAERUS_TOKEN), _tokenAddress);
          caerusStorage.setAddress(keccak256(TOKEN_OWNER), _tokenOwner);
     }
 
@@ -66,7 +65,7 @@ contract CaerusSettings is CaerusBase {
     * @dev Sets a Caerus storage as intiated so that only other contracts can access it and modify its content.
     */
     function setStorageInitialized() public onlyOwner {
-         caerusStorage.setBool(keccak256(CONTRACT_ADDRESS, "initialised"), true);
+         caerusStorage.setBool(getHashString(CONTRACT_ADDRESS, "initialised"), true);
          emit StorageInitializedEvent();
     }
 
