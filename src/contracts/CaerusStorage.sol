@@ -174,7 +174,7 @@ contract CaerusStorage {
         // contracts/settings,  afterwards their direct access is disabled
         if (boolStorage[keccak256(CONTRACT_ADDRESS, "initialised")] == true) {
             // Make sure the access is permitted to only contracts in our Dapp
-            require(addressStorage[keccak256(CONTRACT_ADDRESS, msg.sender)] != 0x0);
+            require(addressStorage[keccak256(abi.encodePacked(CONTRACT_ADDRESS, msg.sender))] != 0x0);
         }
         _;
     }
