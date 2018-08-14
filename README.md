@@ -8,7 +8,6 @@
 
 ## Reviewers and audits
 
-Code for the Caerus Assessment has been reviewed by:
-TBD
+Code for the Caerus Assessment has been reviewed by:BlockEra LLC June 2018.
 
 A bug bounty for the Caerus Assessment will started on [pending date]. [More details](https://www.caerusconnections.io/).
